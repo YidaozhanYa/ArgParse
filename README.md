@@ -9,7 +9,7 @@
 
 #### UNIX-style parsing
 
-```visual basic
+```vb
 Dim Args As New ArgParser
 With Args
     .MarkAsOption "option1", "option2", "option3"
@@ -37,7 +37,7 @@ End With
 
 ArgParse also supports MS-DOS style options which uses slashes as marks and case-insensitive.
 
-```visual basic
+```vb
 Dim Args As New ArgParser
 With Args
 	.OptionsStyle = DOS
@@ -62,7 +62,7 @@ Calling `Args.NextArg` and `Args.ThisArg` will let you walking through all the p
 
 This will be useful in `Select Case ...` statement to select the verb.
 
-```visual basic
+```vb
 Dim Args As New ArgParser
 Args.Parse "bisect bad"
 Select Case Args.NextArg
