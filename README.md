@@ -13,16 +13,16 @@
 Dim Args As New ArgParser
 With Args
     .MarkAsOption "option1", "option2", "option3"
-	'--option1, --option2 and --option3 will be marked as "options" with values
+    '--option1, --option2 and --option3 will be marked as "options" with values
 
     .SetAlias "option3", "o3"
-	'You can also set shorter aliases for flags and options
+    'You can also set shorter aliases for flags and options
 
     .Parse "verb1 verb2 ""C:\path\to\example folder"" --option1 value1 --option2=value2 -o3 value3 --flag1 --flag2"
-	'Parse the command-line arguments.
-	'You can pass in "Command$" in pratical use.
+    'Parse the command-line arguments.
+    'You can pass in "Command$" in pratical use.
     
-	'Show results
+    'Show results
     Dim PlainArg As Variant
     For Each PlainArg In .PlainArgs
         Debug.Print PlainArg
@@ -40,10 +40,9 @@ ArgParse also supports MS-DOS style options which uses slashes as marks and case
 ```vb
 Dim Args As New ArgParser
 With Args
-	.OptionsStyle = DOS
-    .MarkAsOption "Option1", "Option2", "Option3"
+    .OptionsStyle = DOS
     .SetAlias "Option3", "O3"
-	.Parse "Verb1 Verb2 ""C:\path\to\example folder"" /Option1 Value1 /Option2:Value2 /O3 Value3 /Flag1 /Flag2"
+    .Parse "Verb1 Verb2 ""C:\path\to\example folder"" /Option1 Value1 /Option2:Value2 /O3 Value3 /Flag1 /Flag2"
 
     Dim PlainArg As Variant
     For Each PlainArg In .PlainArgs
@@ -52,7 +51,7 @@ With Args
 
     Debug.Print .Options("option3")
     Debug.Print .FlagEnabled("flag1")
-	'This will work because DOS mode is case-insensitive
+    'This will work because DOS mode is case-insensitive
 End With
 ```
 
@@ -66,19 +65,19 @@ This will be useful in `Select Case ...` statement to select the verb.
 Dim Args As New ArgParser
 Args.Parse "bisect bad"
 Select Case Args.NextArg
-	Case "init"
-	Case "clone"
-	Case "commit"
-	Case "bisect"
-    	Select Case Args.NextArg
-    		Case "start"
-    		Case "good"
-    		Case "bad"
-    		Case Else
-        	'...
-    	End Select
-	Case Else
-    Debug.Print "Unsupported operation: " + Args.ThisArg
+    Case "init"
+    Case "clone"
+    Case "commit"
+    Case "bisect"
+    Select Case Args.NextArg
+        Case "start"
+        Case "good"
+        Case "bad"
+        Case Else
+        '...
+    End Select
+    Case Else
+        Debug.Print "Unsupported operation: " + Args.ThisArg
 End Select
 ```
 
